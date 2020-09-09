@@ -3,9 +3,31 @@
     <script src="p5.dom.min.js"></script>
     <script src="p5.sound.min.js"></script>
 <script src="./p5.play.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBFcFT8GTlvy2jePfXkWbFQV3s0umqgETg",
+    authDomain: "tic-tac-toe-faf31.firebaseapp.com",
+    databaseURL: "https://tic-tac-toe-faf31.firebaseio.com",
+    projectId: "tic-tac-toe-faf31",
+    storageBucket: "tic-tac-toe-faf31.appspot.com",
+    messagingSenderId: "792570839591",
+    appId: "1:792570839591:web:428247990309a6d8b2c402"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+ 
   </head>
   <body>
       <script src="sketch.js"></script>
