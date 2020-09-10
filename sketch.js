@@ -1,11 +1,12 @@
 //initiate Game STATEs
 var PLAY = 1;
 var END = 0;
-var gameState = 1;
+var gameState = PLAY;
 var canvas;
 
 //create a sonic sprite
-var sonic;
+var sonic, si; 
+
 
 //create a ground sprite
 var ground ;
@@ -23,6 +24,8 @@ var restart;
 //score
 var count = 0;
 function preload(){
+  si = loadAnimation("images/sonic.png","images/sonic1.png");
+
 
 }
 
@@ -32,8 +35,10 @@ function setup(){
   
 
   sonic = createSprite(300,350,20,50);
-  //sonic.scale = 0.5;
-  sonic.x = 3;
+  
+  sonic.addAnimation("sonicrunning", si);
+ //sonic.scale = 0.5;
+
   ground = createSprite(400,355,800,20);
   //ground.x = ground.width /2;
 
@@ -42,8 +47,8 @@ function setup(){
 
   ObstaclesGroup = new Group();
   
-  //gameOver = createSprite(400,300);
-  //restart = createSprite(400,340);
+  gameOver = createSprite(400,200);
+  restart = createSprite(400,250);
   
   //gameOver.setAnimation("gameOver");
   //gameOver.scale = 0.5;
@@ -52,8 +57,8 @@ function setup(){
   //restart.scale = 0.5;
 
   
-  //gameOver.visible = false;
-  //restart.visible = false;
+  gameOver.visible = false;
+  restart.visible = false;
 
   
   
@@ -69,16 +74,16 @@ function setup(){
 
 function draw() {
   //set background to white
-  background("red");
+  background("white");
   //display score
   text("Score: "+ count, 450, 100);
 
   
-  if(gameState === 1){
+  if(gameState === PLAY){
     //move the ground
-    ground.velocityX = -(6 + 3*count/100);
+    ground.velocityX = -6;
     //scoring
-    count = count + Math.round(frameRate/60);
+    count = count + 1;
     
     if (count>0 && count%100 === 0){
      //play sound
@@ -88,12 +93,7 @@ function draw() {
       ground.x = ground.width/2;
     }
     
-     //jump when the space key is pressed
-    if(keyDown("space") && sonic.y >= 359){
-      sonic.velocityY = -8 ;
-      //play sound
-    }
-  
+       
     //add gravity
     sonic.velocityY = sonic.velocityY + 0.5;
     
@@ -105,12 +105,12 @@ function draw() {
     //End the game when sonic is touching the obstacle
     if(ObstaclesGroup.isTouching(sonic)){
       //play sound
-      gameState = 0;
+      gameState = END;
       //play sound
     }
   }
   
-  else if(gameState === 0) {
+  else if(gameState === END) {
     gameOver.visible = true;
     restart.visible = true;
     
@@ -146,7 +146,7 @@ function draw() {
 }
 
 function reset(){
-  gameState = 1;
+  gameState = PLAY;
   
   gameOver.visible = false;
   restart.visible = false;
@@ -163,7 +163,7 @@ function reset(){
 function spawnObstacles() {
   if(frameCount % 60 === 0) {
     var obstacle = createSprite(800,365,10,40);
-    obstacle.velocityX = - (6 + 3*count/100);
+    obstacle.velocityX = -6;
     
     //generate random obstacles
     var rand = random(1,6);
@@ -172,7 +172,7 @@ function spawnObstacles() {
     
     //assign scale and lifetime to the obstacle           
     //obstacle.scale = 0.5;
-    obstacle.lifetime = 70;
+    obstacle.lifetime = 134;
     //add each obstacle to the group
     ObstaclesGroup.add(obstacle);
   }
