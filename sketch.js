@@ -31,19 +31,19 @@ function setup(){
 
   
 
-  sonic = createSprite(300,200,20,50);
+  sonic = createSprite(300,350,20,50);
   //sonic.scale = 0.5;
   sonic.x = 3;
-  ground = createSprite(400,200,800,20);
+  ground = createSprite(400,355,800,20);
   //ground.x = ground.width /2;
 
-  invisibleGround = createSprite(400,210,800,5);
+  invisibleGround = createSprite(400,350,800,5);
   invisibleGround.visible = true;
 
-  ObstaclesGroup = createGroup();
+  ObstaclesGroup = new Group();
   
-  gameOver = createSprite(400,300);
-  restart = createSprite(400,340);
+  //gameOver = createSprite(400,300);
+  //restart = createSprite(400,340);
   
   //gameOver.setAnimation("gameOver");
   //gameOver.scale = 0.5;
@@ -52,8 +52,8 @@ function setup(){
   //restart.scale = 0.5;
 
   
-  gameOver.visible = false;
-  restart.visible = false;
+  //gameOver.visible = false;
+  //restart.visible = false;
 
   
   
@@ -72,7 +72,7 @@ function draw() {
   background("red");
   //display score
   text("Score: "+ count, 450, 100);
-  console.log(gameState);
+
   
   if(gameState === 1){
     //move the ground
