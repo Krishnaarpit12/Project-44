@@ -3,29 +3,25 @@ var PLAY = 1;
 var END = 0;
 var gameState = PLAY;
 var canvas;
-
 //create a sonic sprite
-var sonic, si; 
-
-
+var sonic, sonic_0, sonic_rolling, sonic_falling;
+var backimg;
 //create a ground sprite
 var ground ;
-
 //invisible Ground to support sonic
 var invisibleGround ;
-
 //create Obstacle Group
 var ObstaclesGroup;
-
-
+var ob;
 //place gameOver and restart icon on the screen
 var gameOver;
 var restart;
 //score
 var count = 0;
 function preload(){
-  si = loadAnimation("images/sonic.png","images/sonic1.png");
-
+  sonic_0 = loadAnimation("images/running.png", "images/sonic.png");
+  sonic_rolling = loadAnimation("images/sonicrolling.png", "images/sc1.png");
+  
 
 }
 
@@ -36,8 +32,9 @@ function setup(){
 
   sonic = createSprite(300,350,20,50);
   
-  sonic.addAnimation("sonicrunning", si);
- //sonic.scale = 0.5;
+  sonic.addAnimation("sonicrunning", sonic_0);
+ sonic.scale = 0.2;
+ sonic_rolling = addAnimation("sonic1rolling", sonic_rolling);
 
   ground = createSprite(400,355,800,20);
   //ground.x = ground.width /2;
