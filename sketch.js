@@ -4,7 +4,7 @@ var END = 0;
 var gameState = PLAY;
 var canvas;
 //create a sonic sprite
-var sonic, sonic_0, sonic_rolling, sonic_falling;
+var sonic, s1, sr, sf;
 var backimg;
 //create a ground sprite
 var ground ;
@@ -19,8 +19,8 @@ var restart;
 //score
 var count = 0;
 function preload(){
-  sonic_0 = loadAnimation("images/running.png", "images/sonic.png");
-  sonic_rolling = loadAnimation("images/sonicrolling.png", "images/sc1.png");
+  s1 = loadAnimation("images/running.png", "images/sonic.png");
+  ob = loadImage("images/ob.png");
   
 
 }
@@ -28,14 +28,11 @@ function preload(){
 function setup(){
   canvas =  createCanvas(800,400)
 
-  
-
   sonic = createSprite(300,350,20,50);
   
-  sonic.addAnimation("sonicrunning", sonic_0);
- sonic.scale = 0.2;
- sonic_rolling = addAnimation("sonic1rolling", sonic_rolling);
-
+  sonic.addAnimation("sonicrunning", s1);
+  sonic.scale = 0.2;
+ 
   ground = createSprite(400,355,800,20);
   //ground.x = ground.width /2;
 
@@ -94,8 +91,6 @@ function draw() {
     //add gravity
     sonic.velocityY = sonic.velocityY + 0.5;
     
-   
-  
     //spawn obstacles
     spawnObstacles();
     
@@ -150,7 +145,7 @@ function reset(){
   
   ObstaclesGroup.destroyEach();
  
-  //animation
+ 
  // sonic.setAnimation("sonic");
   
   count = 0;
@@ -162,13 +157,12 @@ function spawnObstacles() {
     var obstacle = createSprite(800,365,10,40);
     obstacle.velocityX = -6;
     
-    //generate random obstacles
-    var rand = random(1,6);
+   
     //animation
-    //obstacle.setAnimation("obstacle" + rand);
+    obstacle.addImage(ob);
     
     //assign scale and lifetime to the obstacle           
-    //obstacle.scale = 0.5;
+    obstacle.scale = 0.5;
     obstacle.lifetime = 134;
     //add each obstacle to the group
     ObstaclesGroup.add(obstacle);
