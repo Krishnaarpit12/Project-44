@@ -28,7 +28,7 @@ function preload(){
   s1 = loadAnimation("images/sonic.png", "images/running.png");
   //Images
   ob = loadImage("images/ob.png");
-  sr = loadAnimation("images/sc1.png", "images/sc1copy.png", "images/sc1copy2.png", "images/sc1copy4.png", "images/sc1copy5.png");
+  sr = loadAnimation("Project-44-master/images/sc1.png", "Project-44-master/images/sc1copy.png",  "Project-44-master/images/sc1copy2.png", "Project-44-master/images/sc1copy3.png", "Project-44-master/images/sc1copy4.png", "Project-44-master/images/sc1copy5.png");
   sf = loadImage("images/sonic_falling.png");
   backimg = loadImage("images/sonic_bg.jpg");
   g = loadImage("images/s2.jpg");
