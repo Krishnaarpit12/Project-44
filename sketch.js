@@ -4,7 +4,7 @@ var END = 0;
 var gameState = PLAY;
 var canvas;
 //create a sonic sprite
-var sonic, s1, sr, sf;
+var sonic, s1, sf;
 var backimg;
 //create a ground sprite
 var ground ;
@@ -24,10 +24,9 @@ var sbong, scheckpoint, sgame, sdash;
 
 function preload(){
   //Animation 
-  s1 = loadAnimation("images/sonic.png", "images/running.png");
+  s1 = loadAnimation("images/sonic.png", "images/runningw.png");
   //Images
   ob = loadImage("images/ob.png");
-  sr = loadAnimation("Project-44-master/images/sc1.png", "Project-44-master/images/sc1copy.png",  "Project-44-master/images/sc1copy2.png", "Project-44-master/images/sc1copy3.png", "Project-44-master/images/sc1copy4.png", "Project-44-master/images/sc1copy5.png");
   sf = loadImage("images/sonic_falling.png");
   backimg = loadImage("images/sonic_bg.jpg");
   g = loadImage("images/s2.jpg");
