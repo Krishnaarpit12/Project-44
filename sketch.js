@@ -1,8 +1,7 @@
 //initiate Game STATEs
-var START = 2;
 var PLAY = 1;
 var END = 0;
-var gameState = START;
+var gameState = PLAY;
 var canvas;
 //create a sonic sprite
 var sonic, s1, sr, sf;
@@ -14,7 +13,7 @@ var invisibleGround ;
 //create Obstacle Group
 var ObstaclesGroup;
 var ob;
-var g, r, sb;
+var g, r;
 //place gameOver and restart icon on the screen
 var gameOver;
 var restart;
@@ -33,7 +32,7 @@ function preload(){
   backimg = loadImage("images/sonic_bg.jpg");
   g = loadImage("images/s2.jpg");
   r = loadImage("images/s3.jpg");
-  sb = loadImage("images/st.jpg");
+
   //Sounds
   sbong = loadSound("sounds/bong.mp3");
   scheckpoint = loadSound("sounds/checkpoint.mp3");
@@ -88,26 +87,14 @@ function draw() {
   //display score
   text("Score: "+ count, 600, 100);
   
-  if(gameState === START){
-    var playbuttton = createSprite(130, 90 , 20, 20);
-    playbuttton.addImage(sb);
-    fill("black")
-    text("Press the Start button Above the Sonic", 100, 385);
-
-    if(mousePressedOver(playbuttton)){
-      gameState = PLAY;
-      
-    }
-  }
+  
 
   if(gameState === PLAY){
     //move the ground
     ground.velocityX = -6;
     //scoring
     count = count + 1;
-
-    
-   
+ 
     if (count>0 && count%100 === 0){
      //play sound
      scheckpoint.play();
@@ -117,7 +104,7 @@ function draw() {
       ground.x = ground.width/2;
     }
     
-    
+  
     //spawn obstacles
     spawnObstacles();
     
@@ -168,7 +155,7 @@ function draw() {
 }
 
 function reset(){
-  gameState = START;
+  gameState = PLAY;
   
   gameOver.visible = false;
   restart.visible = false;
@@ -188,8 +175,6 @@ function spawnObstacles() {
     obstacle.velocityX = -6;
     obstacle.setCollider("circle",0,0,90);
     obstacle.addImage(ob);
-
-    
     //assign scale and lifetime to the obstacle           
     obstacle.scale = 0.3;
     obstacle.lifetime = 134;
