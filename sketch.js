@@ -69,6 +69,7 @@ function setup(){
   gameOver.visible = false;
   restart.visible = false;
 
+  
   //set text
   textSize(18);
   textFont("Georgia");
@@ -87,6 +88,8 @@ function draw() {
   text("Score: "+ count, 600, 100);
   
   
+  //add gravity
+ sonic.velocityY = sonic.velocityY + 0.8;
 
   if(gameState === PLAY){
     //move the ground
@@ -94,6 +97,8 @@ function draw() {
     //scoring
     count = count + 1;
  
+    text("Press Space Bar To Jump And Right Arrow to Dash And Left To Come Back", 50, 370);
+
     if (count>0 && count%100 === 0){
      //play sound
      scheckpoint.play();
@@ -102,7 +107,15 @@ function draw() {
     if (ground.x < 0){
       ground.x = ground.width/2;
     }
-    
+    if(keyDown("space") || keyDown("up")){
+      sonic.velocityY = -12 ;
+    }
+    if(keyDown("right")){
+      sonic.x = sonic.x + 10;
+    }
+    if(keyDown("left")){
+      sonic.x = sonic.x - 10;
+    }
   
     //spawn obstacles
     spawnObstacles();
